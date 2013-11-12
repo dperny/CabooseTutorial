@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 
+gem "caboose-cms", "~> 0.2.81"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
