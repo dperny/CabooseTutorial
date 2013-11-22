@@ -1,0 +1,40 @@
+<style type='text/css'>
+  #search_form_wrapper { margin-bottom: 10px; position: absolute; top:0; right:0; }
+</style>
+
+<h1>Lunches</h1>
+
+<div id='search_form_wrapper'>
+  <form action='/admin/lunches' method='get' id='search_form'>
+    <input type='text' name='name' placeholder='Name' value="<%= @gen.params['name'] %>" style='width: 100px;' />
+  </form>
+</div>
+
+<% if @lunches.count > 0 %>
+  <table class='data' id='lunches_table'>
+    <tr>
+      <%= raw @gen.sortable_table_headings({
+        'name' => 'Name',
+        'price' => 'Price'})
+      %>
+    </tr>
+    <% @lunches.each do |l| %>
+      <tr onclick="window.location='/admin/lunch/<%= l.id %>/edit';">
+        <td><%= l.name %></td>
+        <td><%= l.price %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= raw @gen.generate %></p>
+<% else %>
+  <p>No lunch met your search.</p>
+<% end %>
+
+<% content_for :caboose_js do %>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      var modal = new CabooseModal(800);
+    });
+  </script>
+<% end %>
+

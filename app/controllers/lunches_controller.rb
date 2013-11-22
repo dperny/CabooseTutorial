@@ -27,7 +27,7 @@ class MenuOptionsController < ApplicationController
       'desc' => false,
       'base_url' => '/admin/lunch'
     })
-    @menu = @gen.items
+    @lunches = @gen.items
     # use Caboose's admin layout (as opposed to a modal layout)
     render :layout => 'caboose/admin'
   end
@@ -35,7 +35,7 @@ class MenuOptionsController < ApplicationController
   # GET /admin/lunch/:id/edit
   def admin_edit
     return if !user_is_allowed('lunch','edit')
-    @option = Lunch.find(params[:id])
+    @lunch = Lunch.find(params[:id])
     render :layout => 'caboose/admin'
   end
 
